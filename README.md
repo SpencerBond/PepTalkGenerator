@@ -1,5 +1,5 @@
 # PepTalkGenerator
-A quick and easy pep talk generator I created when I saw it on Reddit
+A quick and easy pep talk generator I created when I saw it on Reddit.
 
 It's a CLI program that grabs strings from four different files and pieces them together to form amusing sentences meant to inspire.
 
