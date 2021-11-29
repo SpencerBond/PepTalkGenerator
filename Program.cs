@@ -1,16 +1,36 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 
-namespace PepTalkGenerator
+namespace PepTalkGenerator;
+class Program
 {
-    class Program
+    private static List<string> defaultFileLocations = new(){
+        "./resources/PepTalkFirst.txt",
+        "./resources/PepTalkSecond.txt",
+        "./resources/PepTalkThird.txt",
+        "./resources/PepTalkFourth.txt"
+    };
+
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            do{
-                System.Console.Clear();
-                System.Console.WriteLine(PepTalkGenerator.Instance.GeneratePepTalk());
-                System.Console.WriteLine("Press Y For A New Pep Talk. Press Any Other Key To Exit.");
-            }while(System.Console.ReadLine().ToUpper().Equals("Y"));
+        Init();
+    }
+
+    private static void Init(){
+        if(!File.Exists("./init.skbond")){
+            GenerateInit();
+        }
+        Menu.Run();
+    }
+
+    private static void GenerateInit(){
+        using(StreamWriter writer = new(File.Create("./init.skbond"))){
+            foreach (var s in defaultFileLocations)
+            {
+                writer.WriteLine(s);
+            }
         }
     }
 }
+
